@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0.2//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+    <!--字段校验器风格，校验field：user.name-->
+    <field name="air_ticket.name">
+        <field-validator type="requiredstring" short-circuit="true">
+            <message>框架校验：用户名不能为空！</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="minLength">4</param>
+            <param name="maxLength">10</param>
+            <message> 框架校验：用户名称长度为${minLength}到${maxLength}之间</message>
+        </field-validator>
+
+    </field>
+    <field name="air_ticket.sex">
+        <field-validator type="requiredstring" short-circuit="true">
+            <message>框架校验：性別不能为空！</message>
+        </field-validator>
+        <!--<field-validator type="stringlength">-->
+            <!--<param name="minLength">6</param>-->
+            <!--<param name="maxLength">20</param>-->
+            <!--<message>框架校验：密码长度为${minLength}到${maxLength}之间</message>-->
+        <!--</field-validator>-->
+
+    </field>
+    <field name="air_ticket.from_city">
+        <field-validator type="requiredstring" short-circuit="true">
+            <message>框架校验：出发城市不能为空！</message>
+        </field-validator>
+        <!--<field-validator type="fieldexpression" >-->
+            <!--<param name="expression"><![CDATA[(user.sex.equals("男") || user.sex.equals("女"))]]></param>-->
+            <!--<message> XML校验：性别必须是男或者女</message>-->
+        <!--</field-validator>-->
+    </field>
+    <field name="air_ticket.to_city">
+    <field-validator type="requiredstring" short-circuit="true">
+    <message>框架校验：到达城市不能为空！</message>
+    </field-validator>
+    <!--<field-validator type="int">-->
+    <!--<param name="min">10</param>-->
+    <!--<param name="max">150</param>-->
+    <!--<message>框架校验：年龄必须是整型,范围是${min}到${max}之间</message>-->
+    <!--</field-validator>-->
+    </field>
+    <field name="air_ticket.start_time">
+    <field-validator type="requiredstring" short-circuit="true">
+    <message>框架校验：出发时间不能为空！</message>
+    </field-validator>
+    <!--<field-validator type="int">-->
+    <!--<param name="min">10</param>-->
+    <!--<param name="max">150</param>-->
+    <!--<message>框架校验：年龄必须是整型,范围是${min}到${max}之间</message>-->
+    <!--</field-validator>-->
+    </field>
+    <field name="air_ticket.id_card">
+    <field-validator type="requiredstring" short-circuit="true">
+    <message>框架校验：身份证不能为空！</message>
+    </field-validator>
+    <!--<field-validator type="int">-->
+    <!--<param name="min">10</param>-->
+    <!--<param name="max">150</param>-->
+    <!--<message>框架校验：年龄必须是整型,范围是${min}到${max}之间</message>-->
+    <!--</field-validator>-->
+    </field>
+    <!--<field name="user.email">-->
+    <!--<field-validator type="requiredstring" short-circuit="true">-->
+    <!--<message>框架校验：电邮不能为空！</message>-->
+    <!--</field-validator>-->
+    <!--<field-validator type="fieldexpression">-->
+    <!--<param name="expression"><![CDATA[(user.email.indexOf("@")!=-1 && user.email.indexOf(".")!=-1)]]></param>-->
+    <!--<message>-->
+    <!--框架校验：电邮必须包含@或.</message>-->
+    <!--</field-validator>-->
+    <!--</field>-->
+</validators>

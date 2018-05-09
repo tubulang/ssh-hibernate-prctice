@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <package name="ch01" extends="struts-default">
+        <!-- 定义登录拦截器 -->
+        <interceptors>
+            <interceptor name="loginInterceptor" class="interceptor.LoginInterceptor"/>
+        </interceptors>
+        <action name="RegAction" class="action.RegAction">
+            <!--<result name="userList" type="dispatcher">-->
+                <!--<param name="namespace">/</param>-->
+                <!--&lt;!&ndash;<param name="actionName">regAction</param>&ndash;&gt;-->
+            <!--</result>-->
+            <result name="success">/regSuccess.jsp</result>
+            <result name="input">/reglogin.jsp</result>
+        </action>
+        <action name="LogAction" class="action.LogAction">
+            <result name="success">/addBooking.jsp</result>
+            <result name="input">/reglogin.jsp</result>
+        </action>
+
+        <action name="AddBookingAction" class="action.AddBookingAction">
+            <!-- 自定义登录拦截器配置 -->
+            <interceptor-ref name="loginInterceptor"/>
+            <!-- 配置默认拦截器栈 -->
+            <interceptor-ref name="defaultStack"/>
+            <result name="success">/showAirTicket.jsp</result>
+            <result name="input">/addBooking.jsp</result>
+            <result name="reglogin">/reglogin.jsp</result>
+        </action>
+    </package>
+
+    <!--<package name="default" extends="struts-default">-->
+        <!--&lt;!&ndash; 定义登录拦截器 &ndash;&gt;-->
+        <!--<interceptors>-->
+            <!--<interceptor name="loginInterceptor" class="interceptor.LoginInterceptor"/>-->
+        <!--</interceptors>-->
+
+        <!--&lt;!&ndash; 登录Action &ndash;&gt;-->
+        <!--<action name="LogAction" class="action.LogAction">-->
+            <!--<result name="success">/loginSuccess.jsp</result>-->
+            <!--<result name="input">/reglogin.jsp</result>-->
+        <!--</action>-->
+        <!--&lt;!&ndash; 注册Action &ndash;&gt;-->
+        <!--<action name="RegAction" class="action.RegAction">-->
+            <!--<result name="success">/regSuccess.jsp</result>-->
+            <!--<result name="input">/reglogin.jsp</result>-->
+        <!--</action>-->
+    <!--</package>-->
+
+</struts>

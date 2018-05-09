@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- 配置数据库连接 -->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/user?characterEncoding=utf-8</property>
+        <property name="connection.username">root</property>		<!-- 指定数据库用户名 -->
+        <property name="connection.password">root</property>		<!-- 指定数据库密码 -->
+        <!-- 设置结果集的滚动方式 -->
+        <property name="hibernate.jdbc.use_scrollable_resultset">false</property> <!-- 分页查询一定要设置该参数 -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+        <!-- 配置映射文件 -->
+        <mapping resource="models/Users.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
