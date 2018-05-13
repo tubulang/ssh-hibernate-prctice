@@ -33,24 +33,23 @@
             <result name="input">/addBooking.jsp</result>
             <result name="reglogin">/reglogin.jsp</result>
         </action>
+        <action name="ChangePwdAction" class="action.ChangePwdAction">
+            <!-- 自定义登录拦截器配置 -->
+            <interceptor-ref name="loginInterceptor"/>
+            <!-- 配置默认拦截器栈 -->
+            <interceptor-ref name="defaultStack"/>
+            <result name="success">/changePwdSuccess.jsp</result>
+            <result name="input">/changepwd.jsp</result>
+            <result name="reglogin">/reglogin.jsp</result>
+        </action>
+        <action name="outLoginAction" class="action.OutLoginAction">
+            <!-- 自定义登录拦截器配置 -->
+            <!--<interceptor-ref name="loginInterceptor"/>-->
+            <!--&lt;!&ndash; 配置默认拦截器栈 &ndash;&gt;-->
+            <!--<interceptor-ref name="defaultStack"/>-->
+            <result name="success">/main.jsp</result>
+            <!--<result name="input">/false.jsp</result>-->
+        </action>
     </package>
-
-    <!--<package name="default" extends="struts-default">-->
-        <!--&lt;!&ndash; 定义登录拦截器 &ndash;&gt;-->
-        <!--<interceptors>-->
-            <!--<interceptor name="loginInterceptor" class="interceptor.LoginInterceptor"/>-->
-        <!--</interceptors>-->
-
-        <!--&lt;!&ndash; 登录Action &ndash;&gt;-->
-        <!--<action name="LogAction" class="action.LogAction">-->
-            <!--<result name="success">/loginSuccess.jsp</result>-->
-            <!--<result name="input">/reglogin.jsp</result>-->
-        <!--</action>-->
-        <!--&lt;!&ndash; 注册Action &ndash;&gt;-->
-        <!--<action name="RegAction" class="action.RegAction">-->
-            <!--<result name="success">/regSuccess.jsp</result>-->
-            <!--<result name="input">/reglogin.jsp</result>-->
-        <!--</action>-->
-    <!--</package>-->
 
 </struts>

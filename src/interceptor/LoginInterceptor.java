@@ -4,13 +4,15 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
+import models.Users;
+
 import java.util.*;
 
 public class LoginInterceptor extends AbstractInterceptor{
     public String intercept(ActionInvocation ai)throws Exception{
         Map session=ai.getInvocationContext().getSession();
-        String userName=(String)session.get("user");
-        if(userName!=null){
+        Users user=(Users)session.get("user");
+        if(user!=null){
             return ai.invoke();
         }else{
             ActionContext ac=ai.getInvocationContext();

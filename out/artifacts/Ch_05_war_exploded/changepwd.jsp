@@ -1,17 +1,16 @@
 <%--
   Created by IntelliJ IDEA.
   User: Standard_lang
-  Date: 2018/4/19
-  Time: 15:20
+  Date: 2018/5/10
+  Time: 15:52
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
     <title>Title</title>
-
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
         .main{
             text-align: center; /*让div内部文字居中*/
@@ -41,7 +40,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="changepwd.jsp">修改密码 <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">修改密码 <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="addBooking.jsp">机票预定</a>
@@ -72,21 +71,15 @@
     </div>
 </nav>
     <div class="main">
-        <h1>在线机票预定</h1>校验未显示出来，但在控制台可以看到
-        <%--<s:fielderror />--%>
-        <s:fielderror/>
-        <s:form method="post" action="AddBookingAction!addBooking">
-            <s:textfield name="air_ticket.name" label="姓名"/>
-            <s:radio name="air_ticket.sex" list="#{'男':'男','女':'女'}" label="性别" value='男'/>
-            <s:textfield name="air_ticket.from_city" label="始发城市"/>
-            <s:textfield name="air_ticket.to_city" label="目的城市"/>
-            <s:textfield name="air_ticket.start_time" label="出发日期"/>
-            <%--<input type="date" name="air_ticket.start_time">出发日期</input>--%>
-            <s:textfield name="air_ticket.id_card" label="身份证"/>
-            <s:submit name="addsubmit" value="预定"/>
-            <%--<s:reset name="regreset" value="重置"/>--%>
+        <s:form action="ChangePwdAction" method="post">
+            <s:password name="oldPwd" label="旧密码"/>
+            <s:password name="newPwd" label="新密码"/>
+            <s:password name="newPwd2" label="确认密码"/>
+            <s:submit name="submit" label="确认修改"/>
         </s:form>
+
     </div>
+
 <script src="js/jquery-3.3.1.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>

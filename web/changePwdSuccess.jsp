@@ -1,33 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: Standard_lang
-  Date: 2018/4/19
-  Time: 15:20
+  Date: 2018/5/10
+  Time: 10:03
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
     <title>Title</title>
-
-    <style>
-        .main{
-            text-align: center; /*让div内部文字居中*/
-            background-color: #fff;
-            /*border-radius: 20px;*/
-            width: 300px;
-            height: 350px;
-            margin: auto;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-        }
-
-    </style>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
@@ -41,7 +23,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="changepwd.jsp">修改密码 <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">修改密码 <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="addBooking.jsp">机票预定</a>
@@ -71,22 +53,10 @@
         </form>
     </div>
 </nav>
-    <div class="main">
-        <h1>在线机票预定</h1>校验未显示出来，但在控制台可以看到
-        <%--<s:fielderror />--%>
-        <s:fielderror/>
-        <s:form method="post" action="AddBookingAction!addBooking">
-            <s:textfield name="air_ticket.name" label="姓名"/>
-            <s:radio name="air_ticket.sex" list="#{'男':'男','女':'女'}" label="性别" value='男'/>
-            <s:textfield name="air_ticket.from_city" label="始发城市"/>
-            <s:textfield name="air_ticket.to_city" label="目的城市"/>
-            <s:textfield name="air_ticket.start_time" label="出发日期"/>
-            <%--<input type="date" name="air_ticket.start_time">出发日期</input>--%>
-            <s:textfield name="air_ticket.id_card" label="身份证"/>
-            <s:submit name="addsubmit" value="预定"/>
-            <%--<s:reset name="regreset" value="重置"/>--%>
-        </s:form>
-    </div>
+
+<div>
+    <h2>修改密码成功！！！</h2>
+</div>
 <script src="js/jquery-3.3.1.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
