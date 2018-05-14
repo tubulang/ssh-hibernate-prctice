@@ -12,7 +12,7 @@ import common.*;
 
 public class UsersDao {
     //使用HQL语句和Query来实现验证登录
-    public boolean checkLogin(Users user){
+    public Users checkLogin(Users user){
         boolean flag=true;
         //得到session
         Session session=null;
@@ -25,14 +25,15 @@ public class UsersDao {
             queryObject.setParameter(0, user.getName());
             queryObject.setParameter(1, user.getPassword());
             //执行查询获得的结果,list中的每一个元素代表一个Users的对象
-            List list=queryObject.list();
+            List<Users> list=queryObject.list();
             if(list.size()==0){
-                flag=false;//登陆不成功
+                return null;//登陆不成功
+            }else {
+                return list.get(0);
             }
-            return flag;
         }catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }finally{//关闭session
             HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
@@ -46,7 +47,7 @@ public class UsersDao {
         try{
             session=HibernateSessionFactory.getSession();
             //创建Criteria对象
-            Criteria criteria =session.createCriteria(Users.class);
+            Criteria criteria = session.createCriteria(Users.class);
             //封装查询条件
             criteria.add(Expression.and(Expression.eq("name", user.getName()), Expression.eq("password", user.getPassword())));
             //执行查询

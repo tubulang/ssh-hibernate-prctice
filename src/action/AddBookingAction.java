@@ -14,10 +14,19 @@ import java.util.Map;
 public class AddBookingAction extends ActionSupport {
     Booking air_ticket;
     List<Booking> air_tickets;
-    TicketsDao td;
+    TicketsDao td=new TicketsDao();
     public AddBookingAction(){
 
     }
+
+    public List<Booking> getAir_tickets() {
+        return air_tickets;
+    }
+
+    public void setAir_tickets(List<Booking> air_tickets) {
+        this.air_tickets = air_tickets;
+    }
+
     public Booking getAir_ticket() {
         return air_ticket;
     }
@@ -29,10 +38,14 @@ public class AddBookingAction extends ActionSupport {
     public String execute()throws Exception{
         Map m=ActionContext.getContext().getSession();
         Users c=(Users)m.get("user");
+        System.out.println(c.getName());
+        System.out.println(air_ticket.getSex());
+        System.out.println(c.getId());
         air_ticket.setUid(c.getId());
         air_ticket.setUser(c);
         if(td.addTicket(air_ticket)>0){
-//            list=bd.queryUserById(booking.getCid());
+            System.out.println(air_ticket.getUid()+"this is uid");
+            air_tickets=td.queryTicketsById(air_ticket.getUid());
             return SUCCESS;
         }else{
             return "input";

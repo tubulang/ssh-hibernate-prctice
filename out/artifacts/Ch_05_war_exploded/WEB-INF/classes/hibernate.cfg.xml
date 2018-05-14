@@ -16,5 +16,6 @@
         <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
         <!-- 配置映射文件 -->
         <mapping resource="models/Users.hbm.xml"/>
+        <mapping resource="models/Booking.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

@@ -50,6 +50,15 @@
             <result name="success">/main.jsp</result>
             <!--<result name="input">/false.jsp</result>-->
         </action>
+        <action name="queryTicketsAction" class="action.QueryTicketsAction">
+            <!-- 自定义登录拦截器配置 -->
+            <interceptor-ref name="loginInterceptor"/>
+            <!-- 配置默认拦截器栈 -->
+            <interceptor-ref name="defaultStack"/>
+            <result name="success">/showAirTicket.jsp</result>
+            <result name="input">/queryTicketsFalse.jsp</result>
+            <!--<result name="reglogin">/reglogin.jsp</result>-->
+        </action>
     </package>
 
 </struts>

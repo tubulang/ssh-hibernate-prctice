@@ -5,7 +5,7 @@
   Time: 16:11
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="java.util.*,bean.Booking" contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.*,action.*" contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
@@ -23,14 +23,15 @@
         <th>出发日期</th>
         <th>身份证</th>
     </tr>
-    <s:iterator value="#session.air_tickets" status="st" var="airticket">
+    <%--value对应struts.xml配置中action中的值--%>
+    <s:iterator value="air_tickets" status="st" var="airticket">
         <tr>
-            <td><s:property value="#airticket.getName()"/></td>
-            <td><s:property value="#airticket.getSex()"/></td>
-            <td><s:property value="#airticket.getFrom_city()"/></td>
-            <td><s:property value="#airticket.getTo_city()"/></td>
-            <td><s:property value="#airticket.getStart_time()"/></td>
-            <td><s:property value="#airticket.getId_card()"/></td>
+            <td><s:property value="#airticket.name"/></td>
+            <td><s:property value="#airticket.sex"/></td>
+            <td><s:property value="#airticket.from_city"/></td>
+            <td><s:property value="#airticket.to_city"/></td>
+            <td><s:property value="#airticket.start_time"/></td>
+            <td><s:property value="#airticket.id_card"/></td>
         </tr>
     </s:iterator>
 </table>

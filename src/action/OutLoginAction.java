@@ -12,10 +12,11 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class OutLoginAction extends ActionSupport {
     public String execute(){
-        System.out.println("this is outlogin");
+
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpSession session = request.getSession();
         if(session.getAttribute("user") != null){
+            System.out.println("this is outlogin");
             session.removeAttribute("user");
         }
         return SUCCESS;

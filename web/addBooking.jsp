@@ -47,7 +47,7 @@
                 <a class="nav-link" href="addBooking.jsp">机票预定</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="">预定信息维护</a>
+                <a class="nav-link" href="queryTicketsAction">预定信息维护</a>
                 <%--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
                 <%--Dropdown--%>
                 <%--</a>--%>
@@ -72,10 +72,11 @@
     </div>
 </nav>
     <div class="main">
-        <h1>在线机票预定</h1>校验未显示出来，但在控制台可以看到
+        <h1>在线机票预定</h1>
+        <%--校验未显示出来，但在控制台可以看到--%>
         <%--<s:fielderror />--%>
-        <s:fielderror/>
-        <s:form method="post" action="AddBookingAction!addBooking">
+        <%--<s:fielderror/>--%>
+        <s:form method="post" action="AddBookingAction">
             <s:textfield name="air_ticket.name" label="姓名"/>
             <s:radio name="air_ticket.sex" list="#{'男':'男','女':'女'}" label="性别" value='男'/>
             <s:textfield name="air_ticket.from_city" label="始发城市"/>

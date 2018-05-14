@@ -36,7 +36,9 @@ public class LogAction extends ActionSupport{
 //        this.customer = customer;
 //    }
     public String execute(){
-        if(ud.checkLoginByCriteria(user)){
+        //获取数据库全部user值
+        user=ud.checkLogin(user);
+        if(user!=null){
             Map map=ActionContext.getContext().getSession();
             map.put("user",user);
             return SUCCESS;
