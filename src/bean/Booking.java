@@ -3,6 +3,8 @@ package bean;
 import java.util.Date;
 
 public class Booking {
+    private String tid;
+    private String uid;
     private String name;
     private String sex;
     private String from_city;

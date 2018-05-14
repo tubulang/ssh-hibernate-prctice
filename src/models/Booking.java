@@ -3,8 +3,11 @@ package models;
 import java.util.Date;
 
 public class Booking {
+    private int tid;
+    private int uid;
     private String name;
     private String sex;
+    private Users user;
     private String from_city;
     private String to_city;
     private String start_time;
@@ -12,6 +15,32 @@ public class Booking {
     public Booking(){
 
     }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
+
+    public int getTid() {
+        return tid;
+    }
+
+    public void setTid(int tid) {
+        this.tid = tid;
+    }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+
     public String getName() {
         return name;
     }
