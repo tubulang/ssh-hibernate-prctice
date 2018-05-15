@@ -1,18 +1,18 @@
 package action;
 
-import bean.DBCon;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.TicketsDao;
+import dao.UsersDao;
 import models.Booking;
 import models.Users;
-import sun.security.krb5.internal.Ticket;
 
 import java.util.List;
 import java.util.Map;
 
-public class AddBookingAction extends ActionSupport {
+public class DeleteTicketAction extends ActionSupport{
     Booking air_ticket;
+    int tid;
     List<Booking> air_tickets;
     TicketsDao td=new TicketsDao();
 
@@ -21,16 +21,6 @@ public class AddBookingAction extends ActionSupport {
     private int pageNo=1; //计数器,从第1页开始显示
     private int currentPage; //当前页
     private int totalPage; //总页数
-    public AddBookingAction(){
-
-    }
-    public TicketsDao getTd() {
-        return td;
-    }
-
-    public void setTd(TicketsDao td) {
-        this.td = td;
-    }
 
     public int getId() {
         return id;
@@ -68,7 +58,21 @@ public class AddBookingAction extends ActionSupport {
         this.totalPage = totalPage;
     }
 
+    public Booking getAir_ticket() {
+        return air_ticket;
+    }
 
+    public void setAir_ticket(Booking air_ticket) {
+        this.air_ticket = air_ticket;
+    }
+
+    public int getTid() {
+        return tid;
+    }
+
+    public void setTid(int tid) {
+        this.tid = tid;
+    }
 
     public List<Booking> getAir_tickets() {
         return air_tickets;
@@ -78,25 +82,27 @@ public class AddBookingAction extends ActionSupport {
         this.air_tickets = air_tickets;
     }
 
-    public Booking getAir_ticket() {
-        return air_ticket;
+    public TicketsDao getTd() {
+        return td;
     }
 
-    public void setAir_ticket(Booking air_ticket) {
-        this.air_ticket = air_ticket;
+    public void setTd(TicketsDao td) {
+        this.td = td;
     }
 
-    public String execute()throws Exception{
+    public DeleteTicketAction(){
+
+    }
+
+    public String execute() {
         Map m=ActionContext.getContext().getSession();
         Users c=(Users)m.get("user");
-        System.out.println(c.getName());
-        System.out.println(air_ticket.getSex());
-        System.out.println(c.getId());
-        air_ticket.setUid(c.getId());
+        air_ticket=td.queryTicketsByTid(tid);
         air_ticket.setUser(c);
-        if(td.addTicket(air_ticket)>0){
-            System.out.println(air_ticket.getUid()+"this is uid");
-            air_tickets=td.queryTicketsById(air_ticket.getUid());
+        if(td.deleteTicket(air_ticket)){
+            System.out.println(c.getId()+"this is uid");
+            //返回显示所有该用户的预定信息
+            air_tickets=td.queryTicketsById(c.getId());
             //分页显示
             if(air_tickets.size()%pageSize==0){
                 totalPage=air_tickets.size()/pageSize;
@@ -118,23 +124,4 @@ public class AddBookingAction extends ActionSupport {
             return "input";
         }
     }
-//    public String addBooking(){
-//        if(air_ticket.getName()!=null&&air_ticket.getSex()!=null&&air_ticket.getFrom_city()!=null
-//                &&air_ticket.getId_card()!=null&&air_ticket.getStart_time()!=null&&air_ticket.getTo_city()!=null){
-//            Map m;
-//            m= ActionContext.getContext().getSession();
-//            System.out.println(air_ticket.getName());
-//            if(DBCon.addbooking(air_ticket)){
-//                m.put("airticket",air_ticket);
-//                air_tickets=DBCon.queryAirTicket();
-////                System.out.print(users);
-//                m.put("air_tickets", air_tickets);
-//                return "success";
-//            }else{
-//                return "input";
-//            }
-//        }else{
-//            return "input";
-//        }
-//    }
 }

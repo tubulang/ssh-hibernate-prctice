@@ -20,7 +20,7 @@
             <result name="input">/reglogin.jsp</result>
         </action>
         <action name="LogAction" class="action.LogAction">
-            <result name="success">/addBooking.jsp</result>
+            <result name="success">/loginSuccess.jsp</result>
             <result name="input">/reglogin.jsp</result>
         </action>
 
@@ -47,7 +47,7 @@
             <!--<interceptor-ref name="loginInterceptor"/>-->
             <!--&lt;!&ndash; 配置默认拦截器栈 &ndash;&gt;-->
             <!--<interceptor-ref name="defaultStack"/>-->
-            <result name="success">/main.jsp</result>
+            <result name="success">/reglogin.jsp</result>
             <!--<result name="input">/false.jsp</result>-->
         </action>
         <action name="queryTicketsAction" class="action.QueryTicketsAction">
@@ -57,7 +57,36 @@
             <interceptor-ref name="defaultStack"/>
             <result name="success">/showAirTicket.jsp</result>
             <result name="input">/queryTicketsFalse.jsp</result>
-            <!--<result name="reglogin">/reglogin.jsp</result>-->
+            <result name="reglogin">/reglogin.jsp</result>
+        </action>
+        <action name="queryTicketByTidAction" class="action.QueryTicketByTidAction">
+            <!-- 自定义登录拦截器配置 -->
+            <interceptor-ref name="loginInterceptor"/>
+            <!-- 配置默认拦截器栈 -->
+            <interceptor-ref name="defaultStack"/>
+            <result name="success">/changeTicket.jsp</result>
+            <result name="input">/showAirTicket.jsp</result>
+            <result name="reglogin">/reglogin.jsp</result>
+        </action>
+        <action name="changeTicketAction" class="action.ChangeTicketAction">
+            <!-- 自定义登录拦截器配置 -->
+            <interceptor-ref name="loginInterceptor"/>
+            <!-- 配置默认拦截器栈 -->
+            <interceptor-ref name="defaultStack"/>
+            <!--<result type="redirectAction" name="success">queryTicketsAction</result>-->
+            <result name="input">/changeTicketFalse.jsp</result>
+            <result name="success">/showAirTicket.jsp</result>
+            <result name="reglogin">/reglogin.jsp</result>
+        </action>
+        <action name="deleteTicketAction" class="action.DeleteTicketAction">
+            <!-- 自定义登录拦截器配置 -->
+            <interceptor-ref name="loginInterceptor"/>
+            <!-- 配置默认拦截器栈 -->
+            <interceptor-ref name="defaultStack"/>
+            <!--<result type="redirectAction" name="success">queryTicketsAction</result>-->
+            <result name="input">/deleteTicketFalse.jsp</result>
+            <result name="success">/showAirTicket.jsp</result>
+            <result name="reglogin">/reglogin.jsp</result>
         </action>
     </package>
 

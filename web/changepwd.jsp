@@ -10,7 +10,6 @@
 <html>
 <head>
     <title>Title</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
         .main{
             text-align: center; /*让div内部文字居中*/
@@ -29,59 +28,15 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
-    <a class="navbar-brand" href="main.jsp">首页</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">修改密码 <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="addBooking.jsp">机票预定</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="">预定信息维护</a>
-                <%--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
-                <%--Dropdown--%>
-                <%--</a>--%>
-                <%--<div class="dropdown-menu" aria-labelledby="navbarDropdown">--%>
-                <%--<a class="dropdown-item" href="#">Action</a>--%>
-                <%--<a class="dropdown-item" href="#">Another action</a>--%>
-                <%--<div class="dropdown-divider"></div>--%>
-                <%--<a class="dropdown-item" href="#">Something else here</a>--%>
-                <%--</div>--%>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link acitve" href="#">退出系统</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                   aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                Search
-            </button>
-        </form>
-    </div>
-</nav>
+    <s:include value="main.jsp"/>
     <div class="main">
         <s:form action="ChangePwdAction" method="post">
             <s:password name="oldPwd" label="旧密码"/>
             <s:password name="newPwd" label="新密码"/>
             <s:password name="newPwd2" label="确认密码"/>
-            <s:submit name="submit" label="确认修改"/>
+            <s:submit name="submit" value="确认修改"/>
         </s:form>
 
     </div>
-
-<script src="js/jquery-3.3.1.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

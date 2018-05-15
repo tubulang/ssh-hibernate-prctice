@@ -10,21 +10,27 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        .main{
+            text-align: center; /*让div内部文字居中*/
+            background-color: #fff;
+            /*border-radius: 20px;*/
+            width: 300px;
+            height: 350px;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+    </style>
 </head>
 <body>
+<s:include value="main.jsp"/>
 <%--<%&lt;%&ndash;Vector<Person> users=(Vector<Person>)request.getSession().getAttribute("users");%>&ndash;%&gt;--%>
-    您好：${user.name}，欢迎您的注册！！！
-    <table cellpadding="0" cellspacing="0" border="1" width="30%">
-        <tr>
-            <th>用户名</th>
-            <th>密码</th>
-        </tr>
-        <s:iterator value="users" status="st" var="user">
-            <tr>
-                <td><s:property value="#user.name"/></td>
-                <td><s:property value="#user.password"/></td>
-            </tr>
-        </s:iterator>
-    </table>
+    <h2 class="main">您好：<s:property value="#session.user.name"/>，欢迎您的注册！！！</h2>
+
 </body>
 </html>

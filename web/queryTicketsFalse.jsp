@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Standard_lang
@@ -11,6 +12,7 @@
     <title>Title</title>
 </head>
 <body>
-<h2>查询预定信息错误！！！</h2>
+<s:include value="main.jsp"/>
+<h2 class="main">查询预定信息错误！！！</h2>
 </body>
 </html>

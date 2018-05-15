@@ -47,7 +47,7 @@
     <!-- /.modal -->
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
-            <a class="navbar-brand" href="main.jsp">首页</a>
+            <a class="navbar-brand" href="reglogin.jsp">首页</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,7 @@
                         <a class="nav-link" href="addBooking.jsp">机票预定</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="">预定信息维护</a>
+                        <a class="nav-link" href="queryTicketsAction">预定信息维护</a>
                         <%--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
                             <%--Dropdown--%>
                         <%--</a>--%>
@@ -88,6 +88,6 @@
             </div>
         </nav>
 
-    <a href="outLoginAction">退出</a>
+    <%--<a href="outLoginAction">退出</a>--%>
     </body>
 </html>
