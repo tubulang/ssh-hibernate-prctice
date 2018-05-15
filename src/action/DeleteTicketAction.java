@@ -115,7 +115,7 @@ public class DeleteTicketAction extends ActionSupport{
                 pageNo=totalPage;
             }
             //根据当前页查询要在该页上显示的数据
-            air_tickets=td.queryByPage(air_ticket.getUid(),pageNo,pageSize);
+            air_tickets=td.queryByPage(c.getId(),pageNo,pageSize);
             //设置当前页
             currentPage=pageNo;
 

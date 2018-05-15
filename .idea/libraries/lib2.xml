@@ -1,14 +1,6 @@
 <component name="libraryTable">
   <library name="lib2">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/freemarker.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/struts2-core.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/ognl.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/log4j.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/commons-fileupload.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/commons-lang.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/commons-io.jar!/" />
-    </CLASSES>
+    <CLASSES />
     <JAVADOC />
     <SOURCES />
   </library>

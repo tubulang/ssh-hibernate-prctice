@@ -54,17 +54,17 @@
         </tr>
         </s:iterator>
     </table>
-    [<a href="queryAction?pageNo=1">首页</a>]
+    [<a href="queryTicketsAction?pageNo=1">首页</a>]
     <c:choose>
         <c:when test="${currentPage>1}">
-            [<a href="queryAction?pageNo=${currentPage-1}">上一页</a>]
+            [<a href="queryTicketsAction?pageNo=${currentPage-1}">上一页</a>]
         </c:when>
     </c:choose>
     <c:choose>
         <c:when test="${currentPage<totalPage}">
-            [<a href="queryAction?pageNo=${currentPage+1}">下一页</a>]
+            [<a href="queryTicketsAction?pageNo=${currentPage+1}">下一页</a>]
         </c:when>
     </c:choose>
-    [<a href="queryAction?pageNo=${totalPage}">尾页</a>]
+    [<a href="queryTicketsAction?pageNo=${totalPage}">尾页</a>]
 </body>
 </html>

@@ -13,7 +13,7 @@
         <property name="hibernate.jdbc.use_scrollable_resultset">false</property> <!-- 分页查询一定要设置该参数 -->
         <!--方便跟踪SQL执行-->
         <property name="hibernate.show_sql">true</property>
-        <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <!-- 配置映射文件 -->
         <mapping resource="models/Users.hbm.xml"/>
         <mapping resource="models/Booking.hbm.xml"/>

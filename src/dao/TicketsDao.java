@@ -137,7 +137,8 @@ public class TicketsDao {
             query.setFirstResult((pageNo-1)*pageSize); //设置这一页显示的第一条记录的索引
             //这一页显示的记录个数
             query.setMaxResults(pageSize);
-
+            System.out.println(pageSize+"this is pagesize");
+            System.out.println(uid+"this is uid,pagesize");
             //每次最多5条记录
             List<Booking> list=query.list();
             return list;
