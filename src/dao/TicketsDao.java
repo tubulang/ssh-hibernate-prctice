@@ -149,4 +149,32 @@ public class TicketsDao {
             HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
     }
+    //查询每页需要显示的数据(每次最多5条记录)
+    public List<Booking> queryTimeOrNameByPage(String data,int uid,int pageNo,int pageSize){
+        //得到session
+        Session session=null;
+        try{
+            session=HibernateSessionFactory.getSession();
+            String queryString="from Booking where uid="+uid+"and" +
+                    "(name like '%"+data+"%' or start_time like '%"+data+"%')";
+            Query query=session.createQuery(queryString);
+//            query.setParameter(0, uid);
+//            List<Booking> list=query.list();
+//            Query query=session.createQuery(queryString);
+            //每次获取第一条数据的索引
+            query.setFirstResult((pageNo-1)*pageSize); //设置这一页显示的第一条记录的索引
+            //这一页显示的记录个数
+            query.setMaxResults(pageSize);
+            System.out.println(pageSize+"this is pagesize");
+            System.out.println(uid+"this is uid,pagesize");
+            //每次最多5条记录
+            List<Booking> list=query.list();
+            return list;
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }finally{//关闭session
+            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+        }
+    }
 }

@@ -88,6 +88,29 @@
             <result name="success">/showAirTicket.jsp</result>
             <result name="reglogin">/reglogin.jsp</result>
         </action>
+        <!--设置查询数据-->
+        <action name="setQueryDataAction" class="action.SetQueryDataAction">
+            <!-- 自定义登录拦截器配置 -->
+            <interceptor-ref name="loginInterceptor"/>
+            <!-- 配置默认拦截器栈 -->
+            <interceptor-ref name="defaultStack"/>
+            <!--<result type="redirectAction" name="success">queryTicketsAction</result>-->
+            <result name="input">/queryFalse.jsp</result>
+            <!--<result name="success">/showAirTicket.jsp</result>-->
+            <result type="redirectAction" name="success">queryTimeOrNameByPageAction</result>
+            <result name="reglogin">/reglogin.jsp</result>
+        </action>
+        <!--模糊查询-->
+        <action name="queryTimeOrNameByPageAction" class="action.QueryTimeOrNameByPageAction">
+            <!-- 自定义登录拦截器配置 -->
+            <interceptor-ref name="loginInterceptor"/>
+            <!-- 配置默认拦截器栈 -->
+            <interceptor-ref name="defaultStack"/>
+            <!--<result type="redirectAction" name="success">queryTicketsAction</result>-->
+            <result name="input">/deleteTicketFalse.jsp</result>
+            <result name="success">/showAirTicket.jsp</result>
+            <result name="reglogin">/reglogin.jsp</result>
+        </action>
     </package>
 
 </struts>
