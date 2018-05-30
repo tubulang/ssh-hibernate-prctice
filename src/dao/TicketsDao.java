@@ -1,15 +1,24 @@
 package dao;
 
-import common.HibernateSessionFactory;
 import models.Booking;
 import models.Users;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import java.util.List;
 
 public class TicketsDao {
+    SessionFactory sessionFactory;
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     //添加预定信息
     public int addTicket(Booking ticket){
@@ -17,7 +26,7 @@ public class TicketsDao {
         Session session=null;
         Transaction transaction=null;
         try{
-            session=HibernateSessionFactory.getSession();
+            session=sessionFactory.openSession();
             transaction=session.beginTransaction();
             num=Integer.parseInt(session.save(ticket).toString());
             transaction.commit(); //写入数据库，
@@ -25,7 +34,8 @@ public class TicketsDao {
             e.printStackTrace();
             num=0;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
         return num;
     }
@@ -37,7 +47,7 @@ public class TicketsDao {
         Session session=null;
         Transaction transaction=null;
         try{
-            session=HibernateSessionFactory.getSession();
+            session=sessionFactory.openSession();
             String queryString="from Booking where uid=?";
             Query queryObject=session.createQuery(queryString);
             queryObject.setParameter(0, uid);
@@ -48,7 +58,8 @@ public class TicketsDao {
             e.printStackTrace();
             return null;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
     }
     //查询某一机票信息
@@ -58,7 +69,7 @@ public class TicketsDao {
         Transaction transaction=null;
         try{
             System.out.println(tid+"this is tid");
-            session=HibernateSessionFactory.getSession();
+            session=sessionFactory.openSession();
             String queryString="from Booking where tid=?";
             Query queryObject=session.createQuery(queryString);
             queryObject.setParameter(0, tid);
@@ -74,7 +85,8 @@ public class TicketsDao {
             e.printStackTrace();
             return null;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
     }
 
@@ -88,7 +100,7 @@ public class TicketsDao {
         Session session=null;
         Transaction transaction=null;
         try{
-            session=HibernateSessionFactory.getSession();
+            session=sessionFactory.openSession();
             transaction=session.beginTransaction();
             session.update(airticket);
             transaction.commit();//写入数据库表
@@ -97,7 +109,8 @@ public class TicketsDao {
             e.printStackTrace();
             return false;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
     }
 
@@ -105,7 +118,7 @@ public class TicketsDao {
     public boolean deleteTicket(Booking air_ticket){
         Session session=null;
         try{
-            session=HibernateSessionFactory.getSession();
+            session=sessionFactory.openSession();
             //根据id获取要修改的用户数据
 //            Users user=(Users)session.get(Users.class, id);
             //删除user数据
@@ -118,7 +131,8 @@ public class TicketsDao {
             e.printStackTrace();
             return false;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
     }
 
@@ -127,7 +141,7 @@ public class TicketsDao {
         //得到session
         Session session=null;
         try{
-            session=HibernateSessionFactory.getSession();
+            session=sessionFactory.openSession();
             String queryString="from Booking where uid=?";
             Query query=session.createQuery(queryString);
             query.setParameter(0, uid);
@@ -146,7 +160,8 @@ public class TicketsDao {
             e.printStackTrace();
             return null;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
     }
     //查询每页需要显示的数据(每次最多5条记录)
@@ -154,7 +169,7 @@ public class TicketsDao {
         //得到session
         Session session=null;
         try{
-            session=HibernateSessionFactory.getSession();
+            session=sessionFactory.openSession();
             String queryString="from Booking where uid="+uid+"and" +
                     "(name like '%"+data+"%' or start_time like '%"+data+"%')";
             Query query=session.createQuery(queryString);
@@ -174,7 +189,8 @@ public class TicketsDao {
             e.printStackTrace();
             return null;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
     }
 }

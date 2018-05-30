@@ -15,6 +15,14 @@ public class RegAction extends ActionSupport{
 //    Map session;
 //    Person customer1;
 
+    public UsersDao getUd() {
+        return ud;
+    }
+
+    public void setUd(UsersDao ud) {
+        this.ud = ud;
+    }
+
     public Users getUser() {
         return user;
     }

@@ -4,8 +4,36 @@ public class Users {
     private int id;
     private String name;
     private String password;
+//    String oldPwd;
+//    String newPwd;
+//    String newPwd2;
+
     private String password2;
 //    private String sex;
+
+//    public String getOldPwd() {
+//        return oldPwd;
+//    }
+//
+//    public void setOldPwd(String oldPwd) {
+//        this.oldPwd = oldPwd;
+//    }
+//
+//    public String getNewPwd() {
+//        return newPwd;
+//    }
+//
+//    public void setNewPwd(String newPwd) {
+//        this.newPwd = newPwd;
+//    }
+//
+//    public String getNewPwd2() {
+//        return newPwd2;
+//    }
+//
+//    public void setNewPwd2(String newPwd2) {
+//        this.newPwd2 = newPwd2;
+//    }
 
     public String getPassword2() {
         return password2;

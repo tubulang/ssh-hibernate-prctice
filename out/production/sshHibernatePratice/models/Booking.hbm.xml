@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="models.Booking" table="airtickets">
+        <id name="tid"> <!-- 配置主键 -->
+            <generator class="native"/>
+        </id>
+        <!-- 配置其他属性 -->
+        <property name="name" length="20"/>
+        <!--<property name="uid" length="20" insert="false" update="false"/>-->
+        <property name="sex" length="20"/>
+        <property name="from_city" length="20"/>
+        <property name="to_city" length="20"/>
+        <property name="start_time" length="20"/>
+        <property name="id_card" length="20"/>
+
+        <many-to-one name="user" class="models.Users"
+                     cascade="save-update" fetch="select"
+                     column="uid" not-null="true"/>
+    </class>
+</hibernate-mapping>

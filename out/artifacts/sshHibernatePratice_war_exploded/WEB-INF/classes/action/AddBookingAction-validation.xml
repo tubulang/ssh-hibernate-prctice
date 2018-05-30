@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0.2//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+    <!--字段校验器风格，校验field：user.name-->
+    <field name="air_ticket.name">
+        <field-validator type="requiredstring" short-circuit="true">
+            <message>框架校验：用户名不能为空！</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="minLength">4</param>
+            <param name="maxLength">10</param>
+            <message> 框架校验：用户名称长度为${minLength}到${maxLength}之间</message>
+        </field-validator>
+
+    </field>
+    <field name="air_ticket.sex">
+        <field-validator type="requiredstring" short-circuit="true">
+            <message>框架校验：性別不能为空！</message>
+        </field-validator>
+
+    </field>
+    <field name="air_ticket.from_city">
+        <field-validator type="requiredstring" short-circuit="true">
+            <message>框架校验：出发城市不能为空！</message>
+        </field-validator>
+
+    </field>
+    <field name="air_ticket.to_city">
+    <field-validator type="requiredstring" short-circuit="true">
+    <message>框架校验：到达城市不能为空！</message>
+    </field-validator>
+
+    </field>
+    <field name="air_ticket.start_time">
+    <field-validator type="requiredstring" short-circuit="true">
+    <message>框架校验：出发时间不能为空！</message>
+    </field-validator>
+
+    </field>
+    <field name="air_ticket.id_card">
+    <field-validator type="requiredstring" short-circuit="true">
+    <message>框架校验：身份证不能为空！</message>
+    </field-validator>
+
+    </field>
+
+</validators>

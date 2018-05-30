@@ -14,7 +14,7 @@ public class QueryTicketsAction extends ActionSupport {
 
     private List<Booking> air_tickets;
     private Users user;
-    private TicketsDao td=new TicketsDao();
+    private TicketsDao td;
 
     private int id; //界面显示数据的索引
     private final int pageSize=5; //每页显示记录的个数
@@ -90,6 +90,7 @@ public class QueryTicketsAction extends ActionSupport {
     public String execute() throws Exception{
         Map m=ActionContext.getContext().getSession();
         user=(Users)m.get("user");
+
         air_tickets=td.queryTicketsById(user.getId());
 
         //分页显示

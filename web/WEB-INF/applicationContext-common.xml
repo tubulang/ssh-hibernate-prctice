@@ -1,0 +1,51 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+    <context:annotation-config />
+
+    <!--配置bean -->
+    <!-- 普通JDBC连接，取代 hiberbnate.cfg.xml -->
+
+    <bean id="candy" class="org.apache.commons.dbcp.BasicDataSource">
+        <!-- 驱动程序 -->
+        <property name="driverClassName"
+                  value="com.mysql.jdbc.Driver">
+        </property>
+        <!-- 连接字符串 -->
+        <property name="url"
+                  value="jdbc:mysql://localhost:3306/user?characterEncoding=utf-8">
+        </property>
+        <property name="username" value="root"></property>
+        <property name="password" value="root"></property>
+    </bean>
+    <!-- 创建SessionFactory，取代HiberbnateSessionFactory.java -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <!-- setter注入 -->
+        <property name="dataSource">
+            <ref bean="candy" />
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect"> <!-- 数据库方言 -->
+                    org.hibernate.dialect.MySQL5Dialect
+                </prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+        <!-- 说明持久化类映射文件 -->
+        <property name="mappingResources">
+            <list>
+                <value>models/Users.hbm.xml</value>
+                <value>models/Booking.hbm.xml</value>
+            </list>
+        </property>
+    </bean>
+</beans>

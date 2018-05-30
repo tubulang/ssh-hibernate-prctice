@@ -1,23 +1,38 @@
 package dao;
 import java.util.List;
 
-import org.hibernate.Criteria;
-import org.hibernate.Query; //用于查询数据
-import org.hibernate.Session;
-import org.hibernate.Transaction; //事物，用于修改数据
+import org.hibernate.*;
 import org.hibernate.criterion.Expression;
 
 import models.*;
-import common.*;
+//import common.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import javax.annotation.Resource;
 
 public class UsersDao {
+//    @Resource(value="sessionFactory")
+    @Autowired
+    SessionFactory sessionFactory;
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     //使用HQL语句和Query来实现验证登录
     public Users checkLogin(Users user){
         boolean flag=true;
         //得到session
         Session session=null;
         try{
-            session=HibernateSessionFactory.getSession();
+            session=sessionFactory.openSession();
             //hql语句,Users代表是models里的实体类,name和password代表实体类的属性
             String queryString="from Users where name=? and password=?";
             //创建查询
@@ -35,7 +50,8 @@ public class UsersDao {
             e.printStackTrace();
             return null;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
     }
 
@@ -45,7 +61,7 @@ public class UsersDao {
         //得到session
         Session session=null;
         try{
-            session=HibernateSessionFactory.getSession();
+            session=sessionFactory.openSession();
             //创建Criteria对象
             Criteria criteria = session.createCriteria(Users.class);
             //封装查询条件
@@ -61,7 +77,8 @@ public class UsersDao {
             e.printStackTrace();
             return false;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
     }
 
@@ -70,7 +87,7 @@ public class UsersDao {
         //得到session
         Session session=null;
         try{
-            session=HibernateSessionFactory.getSession();
+            session=sessionFactory.openSession();
             Criteria criteria=session.createCriteria(Users.class);
             //执行查询获得的结果,list中的每一个元素代表一个Users的对象
             List list=criteria.list();
@@ -83,7 +100,8 @@ public class UsersDao {
             e.printStackTrace();
             return null;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
     }
 
@@ -92,7 +110,7 @@ public class UsersDao {
         //得到session
         Session session=null;
         try{
-            session=HibernateSessionFactory.getSession();
+            session=sessionFactory.openSession();
             //hql语句,Users代表是models里的实体类,name和password代表实体类的属性
             String queryString="from Users";
             //创建查询
@@ -108,7 +126,8 @@ public class UsersDao {
             e.printStackTrace();
             return null;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
     }
 
@@ -119,7 +138,9 @@ public class UsersDao {
         Session session=null;
         Transaction transaction=null;
         try{
-            session=HibernateSessionFactory.getSession();
+//            ApplicationContext ac=new ClassPathXmlApplicationContext("applicationContext-common.xml");
+//            sessionFactory=(SessionFactory) ac.getBean("sesssionFactory");
+            session=sessionFactory.openSession();
             transaction=session.beginTransaction();
             num=Integer.parseInt(session.save(user).toString());
             transaction.commit(); //写入数据库，
@@ -127,7 +148,8 @@ public class UsersDao {
             e.printStackTrace();
             num=0;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
         return num;
     }
@@ -137,7 +159,7 @@ public class UsersDao {
         //得到session
         Session session=null;
         try{
-            session=HibernateSessionFactory.getSession();
+            session=sessionFactory.openSession();
             String queryString="from Users";
             Query query=session.createQuery(queryString);
             //每次获取第一条数据的索引
@@ -152,7 +174,8 @@ public class UsersDao {
             e.printStackTrace();
             return null;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
     }
 
@@ -160,7 +183,7 @@ public class UsersDao {
     public boolean updateUserById(int id,Users newUser){
         Session session=null;
         try{
-            session=HibernateSessionFactory.getSession();
+            session=sessionFactory.openSession();
             //根据id获取要修改的用户数据
             Users oldUser=(Users)session.get(Users.class, id);
             //设置新的数据
@@ -181,7 +204,8 @@ public class UsersDao {
             e.printStackTrace();
             return false;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
     }
 
@@ -189,7 +213,7 @@ public class UsersDao {
     public Users queryUserById(int id){
         Session session=null;
         try{
-            session=HibernateSessionFactory.getSession();
+            session=sessionFactory.openSession();
             //根据id获取要修改的用户数据
             Users user=(Users)session.get(Users.class, id);
             return user;
@@ -198,7 +222,8 @@ public class UsersDao {
             e.printStackTrace();
             return null;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
     }
 
@@ -206,7 +231,7 @@ public class UsersDao {
     public boolean updateUser(Users newUser){
         Session session=null;
         try{
-            session=HibernateSessionFactory.getSession();
+            session=sessionFactory.openSession();
             //保存oldUser数据回数据库
             Transaction trans=session.beginTransaction();
             session.saveOrUpdate(newUser);
@@ -217,7 +242,8 @@ public class UsersDao {
             e.printStackTrace();
             return false;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
     }
 
@@ -225,7 +251,7 @@ public class UsersDao {
     public boolean deleteUserById(int id){
         Session session=null;
         try{
-            session=HibernateSessionFactory.getSession();
+            session=sessionFactory.openSession();
             //根据id获取要修改的用户数据
             Users user=(Users)session.get(Users.class, id);
             //删除user数据
@@ -238,7 +264,8 @@ public class UsersDao {
             e.printStackTrace();
             return false;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
     }
 
@@ -247,7 +274,7 @@ public class UsersDao {
         //得到session
         Session session=null;
         try{
-            session=HibernateSessionFactory.getSession();
+            session=sessionFactory.openSession();
             Criteria criteria=session.createCriteria(Users.class);
             //执行查询获得的结果,list中的每一个元素代表一个Users的对象
             List list=criteria.list();
@@ -260,7 +287,8 @@ public class UsersDao {
             e.printStackTrace();
             return null;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
     }
 
@@ -271,7 +299,8 @@ public class UsersDao {
         Session session=null;
         Transaction transaction=null;
         try{
-            session=HibernateSessionFactory.getSession();
+            System.out.println("this is changepassword");
+            session=sessionFactory.openSession();
             //hql语句,Users代表是models里的实体类,name和password代表实体类的属性
             String queryString="from Users where name=? and password=?";
             //创建查询
@@ -282,11 +311,13 @@ public class UsersDao {
             List<Users> list=queryObject.list();
             if(list.size()==0){
                 flag=false;//旧密码错误
+                System.out.println("this is changepassword2");
             }else{
                 user=list.get(0); //找到要修改密码的用户对象
                 user.setPassword(newPwd);
                 transaction=session.beginTransaction();
                 session.update(user);//在缓存中保存数据，受影响行数
+                System.out.println("this is changepassword3");
                 transaction.commit();//写入数据库表
             }
             return flag;
@@ -294,7 +325,9 @@ public class UsersDao {
             e.printStackTrace();
             return false;
         }finally{//关闭session
-            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
+            session.close();
+//            HibernateSessionFactory.closeSession();//调用HibernateSessionFactory的静态方法关闭Session
         }
+
     }
 }

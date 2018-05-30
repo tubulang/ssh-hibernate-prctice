@@ -5,13 +5,15 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
-    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <!--<constant name="struts.i18n.encoding" value="UTF-8"/>-->
+    <!-- 指定action的配置转到Spring的配置文件-->
+    <constant name="struts.objectFactory" value="spring" />
     <package name="ch01" extends="struts-default">
         <!-- 定义登录拦截器 -->
         <interceptors>
             <interceptor name="loginInterceptor" class="interceptor.LoginInterceptor"/>
         </interceptors>
-        <action name="RegAction" class="action.RegAction">
+        <action name="RegAction" class="registerAction">
             <!--<result name="userList" type="dispatcher">-->
                 <!--<param name="namespace">/</param>-->
                 <!--&lt;!&ndash;<param name="actionName">regAction</param>&ndash;&gt;-->
@@ -19,12 +21,12 @@
             <result name="success">/regSuccess.jsp</result>
             <result name="input">/reglogin.jsp</result>
         </action>
-        <action name="LogAction" class="action.LogAction">
+        <action name="LogAction" class="loginAction">
             <result name="success">/loginSuccess.jsp</result>
             <result name="input">/reglogin.jsp</result>
         </action>
 
-        <action name="AddBookingAction" class="action.AddBookingAction">
+        <action name="AddBookingAction" class="addBookingAction">
             <!-- 自定义登录拦截器配置 -->
             <interceptor-ref name="loginInterceptor"/>
             <!-- 配置默认拦截器栈 -->
@@ -33,7 +35,7 @@
             <result name="input">/addBooking.jsp</result>
             <result name="reglogin">/reglogin.jsp</result>
         </action>
-        <action name="ChangePwdAction" class="action.ChangePwdAction">
+        <action name="ChangePwdAction" class="changePwdAction">
             <!-- 自定义登录拦截器配置 -->
             <interceptor-ref name="loginInterceptor"/>
             <!-- 配置默认拦截器栈 -->
@@ -42,7 +44,7 @@
             <result name="input">/changepwd.jsp</result>
             <result name="reglogin">/reglogin.jsp</result>
         </action>
-        <action name="outLoginAction" class="action.OutLoginAction">
+        <action name="outLoginAction" class="outLoginAction">
             <!-- 自定义登录拦截器配置 -->
             <!--<interceptor-ref name="loginInterceptor"/>-->
             <!--&lt;!&ndash; 配置默认拦截器栈 &ndash;&gt;-->
@@ -50,7 +52,7 @@
             <result name="success">/reglogin.jsp</result>
             <!--<result name="input">/false.jsp</result>-->
         </action>
-        <action name="queryTicketsAction" class="action.QueryTicketsAction">
+        <action name="queryTicketsAction" class="queryTicketsAction">
             <!-- 自定义登录拦截器配置 -->
             <interceptor-ref name="loginInterceptor"/>
             <!-- 配置默认拦截器栈 -->
@@ -59,7 +61,7 @@
             <result name="input">/queryTicketsFalse.jsp</result>
             <result name="reglogin">/reglogin.jsp</result>
         </action>
-        <action name="queryTicketByTidAction" class="action.QueryTicketByTidAction">
+        <action name="queryTicketByTidAction" class="queryTicketByTidAction">
             <!-- 自定义登录拦截器配置 -->
             <interceptor-ref name="loginInterceptor"/>
             <!-- 配置默认拦截器栈 -->
@@ -68,7 +70,7 @@
             <result name="input">/showAirTicket.jsp</result>
             <result name="reglogin">/reglogin.jsp</result>
         </action>
-        <action name="changeTicketAction" class="action.ChangeTicketAction">
+        <action name="changeTicketAction" class="changeTicketAction">
             <!-- 自定义登录拦截器配置 -->
             <interceptor-ref name="loginInterceptor"/>
             <!-- 配置默认拦截器栈 -->
@@ -78,7 +80,7 @@
             <result name="success">/showAirTicket.jsp</result>
             <result name="reglogin">/reglogin.jsp</result>
         </action>
-        <action name="deleteTicketAction" class="action.DeleteTicketAction">
+        <action name="deleteTicketAction" class="deleteTicketAction">
             <!-- 自定义登录拦截器配置 -->
             <interceptor-ref name="loginInterceptor"/>
             <!-- 配置默认拦截器栈 -->
@@ -89,7 +91,7 @@
             <result name="reglogin">/reglogin.jsp</result>
         </action>
         <!--设置查询数据-->
-        <action name="setQueryDataAction" class="action.SetQueryDataAction">
+        <action name="setQueryDataAction" class="setQueryDataAction">
             <!-- 自定义登录拦截器配置 -->
             <interceptor-ref name="loginInterceptor"/>
             <!-- 配置默认拦截器栈 -->
@@ -101,7 +103,7 @@
             <result name="reglogin">/reglogin.jsp</result>
         </action>
         <!--模糊查询-->
-        <action name="queryTimeOrNameByPageAction" class="action.QueryTimeOrNameByPageAction">
+        <action name="queryTimeOrNameByPageAction" class="queryTimeOrNameByPageAction">
             <!-- 自定义登录拦截器配置 -->
             <interceptor-ref name="loginInterceptor"/>
             <!-- 配置默认拦截器栈 -->

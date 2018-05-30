@@ -12,7 +12,8 @@ public class LogAction extends ActionSupport{
 //    private String logpassword;
 //    Person customer;
 //    Map session;
-
+    Users user;
+    UsersDao ud=new UsersDao();
     public Users getUser() {
         return user;
     }
@@ -21,8 +22,17 @@ public class LogAction extends ActionSupport{
         this.user = user;
     }
 
-    Users user;
-    UsersDao ud=new UsersDao();
+
+
+    public UsersDao getUd() {
+        return ud;
+    }
+
+    public void setUd(UsersDao ud) {
+        this.ud = ud;
+    }
+
+
 //    List<Person> users;
 
     public LogAction(){

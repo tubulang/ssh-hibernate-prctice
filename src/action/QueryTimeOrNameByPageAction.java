@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class QueryTimeOrNameByPageAction extends ActionSupport {
     Users user;
-    TicketsDao td=new TicketsDao();
+    TicketsDao td;
     List<Booking> air_tickets;
     String query_data;
 

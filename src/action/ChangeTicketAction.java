@@ -14,7 +14,7 @@ import java.util.Map;
 public class ChangeTicketAction extends ActionSupport {
     Booking air_ticket;
     List<Booking> air_tickets;
-    TicketsDao td=new TicketsDao();
+    TicketsDao td;
 
     private int id; //界面显示数据的索引
     private final int pageSize=5; //每页显示记录的个数

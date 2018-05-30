@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="sshHibernatePratice:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/sshHibernatePratice_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="sshHibernatePratice" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="antlr-2.7.7" />
+          <element id="library" level="project" name="Hibernate 5.2.16-5.2.16" />
+          <element id="library" level="project" name="Java EE 6-Java EE 6" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="sshHibernatePratice/web/Web" />
+    </root>
+  </artifact>
+</component>

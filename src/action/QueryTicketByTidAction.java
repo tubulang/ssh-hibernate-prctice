@@ -11,7 +11,7 @@ import java.util.List;
 public class QueryTicketByTidAction extends ActionSupport {
     Booking air_ticket;
     int tid;
-    TicketsDao td=new TicketsDao();
+    TicketsDao td;
 
     public int getTid() {
         return tid;

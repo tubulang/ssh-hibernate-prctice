@@ -12,9 +12,17 @@ public class ChangePwdAction extends ActionSupport {
     String newPwd;
     String newPwd2;
     Users user;
-    UsersDao ud=new UsersDao();
+    UsersDao ud;
     public ChangePwdAction(){
 
+    }
+
+    public UsersDao getUd() {
+        return ud;
+    }
+
+    public void setUd(UsersDao ud) {
+        this.ud = ud;
     }
 
     public String getOldPwd() {
@@ -52,6 +60,7 @@ public class ChangePwdAction extends ActionSupport {
     public String execute(){
         Map map= ActionContext.getContext().getSession();
         user=(Users)map.get("user");
+        System.out.println(oldPwd);
         if(ud.changePassword(user,oldPwd,newPwd)){
             return SUCCESS;
         }else{
